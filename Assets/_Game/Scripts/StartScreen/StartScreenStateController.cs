@@ -1,6 +1,6 @@
 ﻿using Tofunaut.TofuUnity;
 
-namespace Tofunaut.GridCCG
+namespace Tofunaut.GridCCG.StartScreen
 {
     public class StartScreenStateModel : IAppStateModel
     {

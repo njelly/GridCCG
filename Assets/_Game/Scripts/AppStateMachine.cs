@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Tofunaut.GridCCG.Game;
+using Tofunaut.GridCCG.SplashScreen;
+using Tofunaut.GridCCG.StartScreen;
 using UnityEngine;
 
 namespace Tofunaut.GridCCG
