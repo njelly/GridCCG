@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Tofunaut.GridCCG
+namespace Tofunaut.GridCCG.Game
 {
     [RequireComponent(typeof(Camera))]
     [RequireComponent(typeof(PlayerInput))]
@@ -66,7 +66,7 @@ namespace Tofunaut.GridCCG
         {
             var mousePoint = context.ReadValue<Vector2>();
 
-            // using inverse transform point avoids jitters that come from updating the position of the camera while raycasting on the same frame
+            // using inverse transform point avoids jitters that come from updating the position of the camera while ray casting on the same frame
             var targetPosition = _cameraTransform.InverseTransformPoint(_targetTransform.position);
             var planePoint = MouseToPlanePosition(mousePoint, new Plane(Vector3.up, targetPosition));
 
