@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 0aa04d6edc8b047d2854332ccf39414d,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -312,7 +313,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 30
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -356,13 +357,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35711a8a876c3b429e3c96a36e2a0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToTarget: 10
+  distanceToTarget: 30
   angleToTarget: {x: 45, y: 0, z: 0}
   minXRotation: 10
   maxXRotation: 85
   moveSpeed: 10
-  cameraMinBounds: {x: -10, y: -10}
-  cameraMaxBounds: {x: 10, y: 10}
+  cameraMinBounds: {x: -2.5, y: -2.5}
+  cameraMaxBounds: {x: 22.5, y: 22.5}
 --- !u!114 &2089858318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,72 +395,3 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 2089858315}
---- !u!1001 &2104269166139534244
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3217876050196450519, guid: 4786f97cbe1465d49b1ad67b4c92f5a3,
-        type: 3}
-      propertyPath: m_Name
-      value: DefaultGameBoard
-      objectReference: {fileID: 0}
-    - target: {fileID: 7440717078530696942, guid: 4786f97cbe1465d49b1ad67b4c92f5a3,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7440717078530696942, guid: 4786f97cbe1465d49b1ad67b4c92f5a3,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7440717078530696942, guid: 4786f97cbe1465d49b1ad67b4c92f5a3,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7440717078530696942, guid: 4786f97cbe1465d49b1ad67b4c92f5a3,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7440717078530696942, guid: 4786f97cbe1465d49b1ad67b4c92f5a3,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7440717078530696942, guid: 4786f97cbe1465d49b1ad67b4c92f5a3,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7440717078530696942, guid: 4786f97cbe1465d49b1ad67b4c92f5a3,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7440717078530696942, guid: 4786f97cbe1465d49b1ad67b4c92f5a3,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7440717078530696942, guid: 4786f97cbe1465d49b1ad67b4c92f5a3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7440717078530696942, guid: 4786f97cbe1465d49b1ad67b4c92f5a3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7440717078530696942, guid: 4786f97cbe1465d49b1ad67b4c92f5a3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4786f97cbe1465d49b1ad67b4c92f5a3, type: 3}
