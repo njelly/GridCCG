@@ -8,6 +8,12 @@ namespace Tofunaut.GridCCG
     {
         [Header("Development")]
         public bool skipSplash;
+        public bool skipStart;
+        public GameStateModel debugGameStateModel;
+
+        private SplashScreenStateModel _splashScreenStateModel;
+        private StartScreenStateModel _startScreenStateModel;
+        private GameStateModel _gameStateModel;
 
         private void Awake()
         {
@@ -16,6 +22,10 @@ namespace Tofunaut.GridCCG
 
         private async void Start()
         {
+            _splashScreenStateModel = default;
+            _startScreenStateModel = default;
+            _gameStateModel = Debug.isDebugBuild ? debugGameStateModel : default;
+            
             await EnterSplash();
         }
 
@@ -24,7 +34,7 @@ namespace Tofunaut.GridCCG
             if (!Debug.isDebugBuild || !skipSplash)
             {
                 var splashState = new AppState<SplashScreenStateController, SplashScreenStateModel>(AppConsts.Scenes.SplashScreen);
-                await splashState.Enter();
+                await splashState.Enter(_splashScreenStateModel);
                 while(!splashState.IsComplete)
                     await Task.Yield();
             }
@@ -34,10 +44,14 @@ namespace Tofunaut.GridCCG
 
         private async Task EnterStart()
         {
-            var startScreenState = new AppState<StartScreenStateController, StartScreenStateModel>(AppConsts.Scenes.StartScreen);
-            await startScreenState.Enter();
-            while(!startScreenState.IsComplete)
-                await Task.Yield();
+            if (!Debug.isDebugBuild || !skipSplash)
+            {
+                var startScreenState =
+                    new AppState<StartScreenStateController, StartScreenStateModel>(AppConsts.Scenes.StartScreen);
+                await startScreenState.Enter(_startScreenStateModel);
+                while (!startScreenState.IsComplete)
+                    await Task.Yield();
+            }
 
             await EnterGame();
         }
@@ -45,7 +59,7 @@ namespace Tofunaut.GridCCG
         private async Task EnterGame()
         {
             var inGameState = new AppState<GameStateController, GameStateModel>(AppConsts.Scenes.Game);
-            await inGameState.Enter();
+            await inGameState.Enter(_gameStateModel);
             while (!inGameState.IsComplete)
                 await Task.Yield();
 

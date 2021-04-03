@@ -1,9 +1,11 @@
+using System;
 using Tofunaut.TofuUnity;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace Tofunaut.GridCCG.Game
 {
+    [Serializable]
     public class GameStateModel : IAppStateModel
     {
         public AssetReference gameBoardAssetReference;

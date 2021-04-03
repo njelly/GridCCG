@@ -18,15 +18,20 @@ namespace Tofunaut.GridCCG
             _sceneIndex = sceneIndex;
         }
 
-        public virtual async Task Enter()
+        public virtual async Task Enter(T2 model)
         {
             var loadTask = SceneManager.LoadSceneAsync(_sceneIndex);
             while (!loadTask.isDone)
                 await Task.Yield();
 
             _stateController = Object.FindObjectOfType<T1>();
-            if(!_stateController)
+            if (!_stateController)
+            {
                 Debug.LogError($"no object found of type {nameof(T1)}");
+                return;
+            }
+            
+            _stateController.SetModel(model);
         }
     }
 }

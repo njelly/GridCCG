@@ -166,4 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38e4835e5d3423f9df788c51e4b1f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipSplash: 0
+  skipSplash: 1
+  skipStart: 1
+  debugGameStateModel:
+    gameBoardAssetReference:
+      m_AssetGUID: 4786f97cbe1465d49b1ad67b4c92f5a3
+      m_SubObjectName: 
