@@ -1,10 +1,11 @@
 using System;
+using Tofunaut.TofuUnity;
 using UnityEngine;
 
 namespace Tofunaut.GridCCG
 {
     [RequireComponent(typeof(Camera))]
-    public class CameraController : MonoBehaviour
+    public class GameCameraController : MonoBehaviour
     {
         public float distanceToTarget;
         public Vector3 angleToTarget;

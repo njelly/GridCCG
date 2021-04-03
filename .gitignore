@@ -10,6 +10,9 @@ s .gitignore file should be placed at the root of your Unity project directory
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+# JetBrains
+/.idea
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
