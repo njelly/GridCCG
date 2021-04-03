@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +12,8 @@ namespace Tofunaut.GridCCG
         public float minXRotation;
         public float maxXRotation;
         public float moveSpeed;
+        public Vector2 cameraMinBounds;
+        public Vector2 cameraMaxBounds;
         
         private Transform _cameraTransform;
         private Transform _targetTransform;
@@ -93,6 +94,12 @@ namespace Tofunaut.GridCCG
             
             // rotate the delta based on the Y rotation to target
             _targetTransform.localPosition += Quaternion.Euler(0f, angleToTarget.y, 0f) * new Vector3(moveDelta.x, 0f, moveDelta.y);
+
+            var targetWorldPos = _targetTransform.position;
+            
+            // clamp the target position
+            _targetTransform.position = new Vector3(Mathf.Clamp(targetWorldPos.x, cameraMinBounds.x, cameraMaxBounds.x),
+                targetWorldPos.y, Mathf.Clamp(targetWorldPos.z, cameraMinBounds.y, cameraMaxBounds.y));
         }
 
         private void LateUpdate()

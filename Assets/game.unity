@@ -603,6 +603,8 @@ MonoBehaviour:
   minXRotation: 10
   maxXRotation: 85
   moveSpeed: 10
+  cameraMinBounds: {x: -10, y: -10}
+  cameraMaxBounds: {x: 10, y: 10}
 --- !u!114 &2089858318
 MonoBehaviour:
   m_ObjectHideFlags: 0
