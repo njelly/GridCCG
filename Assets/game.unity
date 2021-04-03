@@ -600,11 +600,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceToTarget: 10
   angleToTarget: {x: 45, y: 0, z: 0}
-  lerpAngleSpeed: 5
-  lerpDistanceSpeed: 5
   minXRotation: 10
   maxXRotation: 85
-  orbitSpeed: 1000
+  moveSpeed: 10
 --- !u!114 &2089858318
 MonoBehaviour:
   m_ObjectHideFlags: 0

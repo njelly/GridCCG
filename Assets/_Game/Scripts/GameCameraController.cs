@@ -1,7 +1,4 @@
 using System;
-using Mirror.Examples.MultipleMatch;
-using Mirror.Examples.Pong;
-using Tofunaut.TofuUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,13 +8,11 @@ namespace Tofunaut.GridCCG
     [RequireComponent(typeof(PlayerInput))]
     public class GameCameraController : MonoBehaviour
     {
-        private const float DragPlayDistance = 10f;
-        
         public float distanceToTarget;
         public Vector3 angleToTarget;
         public float minXRotation;
         public float maxXRotation;
-        //public float orbitSpeed;
+        public float moveSpeed;
         
         private Transform _cameraTransform;
         private Transform _targetTransform;
@@ -25,6 +20,7 @@ namespace Tofunaut.GridCCG
         private bool _doDrag;
         private Vector3 _prevDragPos;
         private Camera _camera;
+        private Vector2 _moveInput;
 
         private void Awake()
         {
@@ -39,6 +35,17 @@ namespace Tofunaut.GridCCG
             _playerInput.currentActionMap.FindAction("DoDrag").started += OnPlayerDoDrag;
             _playerInput.currentActionMap.FindAction("DoDrag").performed += OnPlayerDoDrag;
             _playerInput.currentActionMap.FindAction("DoDrag").canceled += OnPlayerDoDrag;
+            _playerInput.currentActionMap.FindAction("Move").started += OnPlayerMove;
+            _playerInput.currentActionMap.FindAction("Move").performed += OnPlayerMove;
+            _playerInput.currentActionMap.FindAction("Move").canceled += OnPlayerMove;
+        }
+
+        private void OnPlayerMove(InputAction.CallbackContext context)
+        {
+            if (context.started || context.performed)
+                _moveInput = context.ReadValue<Vector2>();
+            else
+                _moveInput = Vector2.zero;
         }
 
         private void Start()
@@ -46,11 +53,11 @@ namespace Tofunaut.GridCCG
             _targetTransform = new GameObject("Camera Target").GetComponent<Transform>();
         }
 
-        private void OnPlayerDoDrag(InputAction.CallbackContext obj)
+        private void OnPlayerDoDrag(InputAction.CallbackContext context)
         {
-            if (obj.started)
+            if (context.started)
                 _doDrag = true;
-            else if (obj.canceled)
+            else if (context.canceled)
                 _doDrag = false;
         }
 
@@ -80,10 +87,21 @@ namespace Tofunaut.GridCCG
             return _cameraTransform.InverseTransformPoint(ray.GetPoint(enterPoint));
         }
 
+        private void Update()
+        {
+            var moveDelta = _moveInput * (moveSpeed * Time.deltaTime);
+            
+            // rotate the delta based on the Y rotation to target
+            _targetTransform.localPosition += Quaternion.Euler(0f, angleToTarget.y, 0f) * new Vector3(moveDelta.x, 0f, moveDelta.y);
+        }
+
         private void LateUpdate()
         {
             // calculate the relative position and rotation to the target transform
             var targetPosition = _targetTransform.position;
+
+            // use modulo to keep angle values in a reasonable range
+            angleToTarget = new Vector3(angleToTarget.x, angleToTarget.y % 360, angleToTarget.z);
             
             var clampedAngleToTarget = new Vector3(Mathf.Clamp(angleToTarget.x, minXRotation, maxXRotation),
                 angleToTarget.y, angleToTarget.z);
