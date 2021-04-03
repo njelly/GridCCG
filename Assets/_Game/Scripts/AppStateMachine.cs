@@ -44,7 +44,7 @@ namespace Tofunaut.GridCCG
 
         private async Task EnterStart()
         {
-            if (!Debug.isDebugBuild || !skipSplash)
+            if (!Debug.isDebugBuild || !skipStart)
             {
                 var startScreenState =
                     new AppState<StartScreenStateController, StartScreenStateModel>(AppConsts.Scenes.StartScreen);
