@@ -11,4 +11,4 @@ namespace Tofunaut.GridCCG.Data
         public int movement;
         public int hitPoints;
     }
-}R
+}
