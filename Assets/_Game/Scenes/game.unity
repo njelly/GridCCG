@@ -361,7 +361,7 @@ MonoBehaviour:
   angleToTarget: {x: 45, y: 0, z: 0}
   minXRotation: 10
   maxXRotation: 85
-  moveSpeed: 10
+  moveSpeed: 15
   cameraMinBounds: {x: -2.5, y: -2.5}
   cameraMaxBounds: {x: 22.5, y: 22.5}
 --- !u!114 &2089858318
