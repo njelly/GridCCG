@@ -363,7 +363,7 @@ MonoBehaviour:
   moveSpeed: 15
   cameraMinBounds: {x: -2.5, y: -2.5}
   cameraMaxBounds: {x: 32.5, y: 32.5}
-  zoomSpeed: 10
+  zoomSpeed: 60
   defaultDistanceToTarget: 40
   minDistanceToTarget: 20
   maxDistanceToTarget: 80
