@@ -357,13 +357,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35711a8a876c3b429e3c96a36e2a0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToTarget: 30
   angleToTarget: {x: 45, y: 0, z: 0}
   minXRotation: 10
   maxXRotation: 85
   moveSpeed: 15
   cameraMinBounds: {x: -2.5, y: -2.5}
   cameraMaxBounds: {x: 32.5, y: 32.5}
+  zoomSpeed: 10
+  defaultDistanceToTarget: 40
+  minDistanceToTarget: 20
+  maxDistanceToTarget: 80
 --- !u!114 &2089858318
 MonoBehaviour:
   m_ObjectHideFlags: 0

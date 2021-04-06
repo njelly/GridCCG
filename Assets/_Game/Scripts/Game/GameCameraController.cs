@@ -7,13 +7,16 @@ namespace Tofunaut.GridCCG.Game
     [RequireComponent(typeof(PlayerInput))]
     public class GameCameraController : MonoBehaviour
     {
-        public float distanceToTarget;
         public Vector3 angleToTarget;
         public float minXRotation;
         public float maxXRotation;
         public float moveSpeed;
         public Vector2 cameraMinBounds;
         public Vector2 cameraMaxBounds;
+        public float zoomSpeed;
+        public float defaultDistanceToTarget;
+        public float minDistanceToTarget;
+        public float maxDistanceToTarget;
         
         private Transform _cameraTransform;
         private Transform _targetTransform;
@@ -22,12 +25,15 @@ namespace Tofunaut.GridCCG.Game
         private Vector3 _prevDragPos;
         private Camera _camera;
         private Vector2 _moveInput;
+        private float _zoomInput;
+        private float _currentDistanceToTarget;
 
         private void Awake()
         {
             _camera = GetComponent<Camera>();
             _cameraTransform = GetComponent<Transform>();
             _playerInput = GetComponent<PlayerInput>();
+            _currentDistanceToTarget = defaultDistanceToTarget;
             
             _playerInput.currentActionMap.Enable();
             _playerInput.currentActionMap.FindAction("MousePosition").started += OnPlayerMousePosition;
@@ -39,6 +45,48 @@ namespace Tofunaut.GridCCG.Game
             _playerInput.currentActionMap.FindAction("Move").started += OnPlayerMove;
             _playerInput.currentActionMap.FindAction("Move").performed += OnPlayerMove;
             _playerInput.currentActionMap.FindAction("Move").canceled += OnPlayerMove;
+            _playerInput.currentActionMap.FindAction("Zoom").started += OnPlayerZoom;
+            _playerInput.currentActionMap.FindAction("Zoom").performed += OnPlayerZoom;
+            _playerInput.currentActionMap.FindAction("Zoom").canceled += OnPlayerZoom;
+        }
+
+        private void Update()
+        {
+            var moveDelta = _moveInput * (moveSpeed * Time.deltaTime);
+            
+            // rotate the delta based on the Y rotation to target
+            _targetTransform.localPosition += Quaternion.Euler(0f, angleToTarget.y, 0f) * new Vector3(moveDelta.x, 0f, moveDelta.y);
+
+            var targetWorldPos = _targetTransform.position;
+            
+            // clamp the target position
+            _targetTransform.position = new Vector3(Mathf.Clamp(targetWorldPos.x, cameraMinBounds.x, cameraMaxBounds.x),
+                targetWorldPos.y, Mathf.Clamp(targetWorldPos.z, cameraMinBounds.y, cameraMaxBounds.y));
+
+            // zoom in and out
+            _currentDistanceToTarget = Mathf.Clamp(_currentDistanceToTarget + _zoomInput * zoomSpeed * Time.deltaTime, minDistanceToTarget, maxDistanceToTarget);
+        }
+
+        private void LateUpdate()
+        {
+            // calculate the relative position and rotation to the target transform
+            var targetPosition = _targetTransform.position;
+
+            // use modulo to keep angle values in a reasonable range
+            angleToTarget = new Vector3(angleToTarget.x, angleToTarget.y % 360, angleToTarget.z);
+            
+            var clampedAngleToTarget = new Vector3(Mathf.Clamp(angleToTarget.x, minXRotation, maxXRotation),
+                angleToTarget.y, angleToTarget.z);
+            _cameraTransform.position = targetPosition + Quaternion.Euler(clampedAngleToTarget) * (Vector3.forward * -_currentDistanceToTarget);
+            _cameraTransform.rotation = Quaternion.LookRotation(targetPosition - _cameraTransform.position);
+        }
+
+        private void OnPlayerZoom(InputAction.CallbackContext context)
+        {
+            if (context.started || context.performed)
+                _zoomInput = context.ReadValue<float>();
+            else
+                _zoomInput = 0f;
         }
 
         private void OnPlayerMove(InputAction.CallbackContext context)
@@ -86,34 +134,6 @@ namespace Tofunaut.GridCCG.Game
             var ray = _camera.ScreenPointToRay(mousePosition);
             plane.Raycast(ray, out var enterPoint);
             return _cameraTransform.InverseTransformPoint(ray.GetPoint(enterPoint));
-        }
-
-        private void Update()
-        {
-            var moveDelta = _moveInput * (moveSpeed * Time.deltaTime);
-            
-            // rotate the delta based on the Y rotation to target
-            _targetTransform.localPosition += Quaternion.Euler(0f, angleToTarget.y, 0f) * new Vector3(moveDelta.x, 0f, moveDelta.y);
-
-            var targetWorldPos = _targetTransform.position;
-            
-            // clamp the target position
-            _targetTransform.position = new Vector3(Mathf.Clamp(targetWorldPos.x, cameraMinBounds.x, cameraMaxBounds.x),
-                targetWorldPos.y, Mathf.Clamp(targetWorldPos.z, cameraMinBounds.y, cameraMaxBounds.y));
-        }
-
-        private void LateUpdate()
-        {
-            // calculate the relative position and rotation to the target transform
-            var targetPosition = _targetTransform.position;
-
-            // use modulo to keep angle values in a reasonable range
-            angleToTarget = new Vector3(angleToTarget.x, angleToTarget.y % 360, angleToTarget.z);
-            
-            var clampedAngleToTarget = new Vector3(Mathf.Clamp(angleToTarget.x, minXRotation, maxXRotation),
-                angleToTarget.y, angleToTarget.z);
-            _cameraTransform.position = targetPosition + Quaternion.Euler(clampedAngleToTarget) * (Vector3.forward * -distanceToTarget);
-            _cameraTransform.rotation = Quaternion.LookRotation(targetPosition - _cameraTransform.position);
         }
     }
 }
