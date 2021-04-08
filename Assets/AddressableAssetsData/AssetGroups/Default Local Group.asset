@@ -17,8 +17,26 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: dc2cec4fa2f2ca54ea98e84205235c4f
   m_SerializeEntries:
+  - m_GUID: 418b4a3b679c7a5419560803c08cb340
+    m_Address: Assets/_Game/Data/Cards/HumanWarriorCard.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 4786f97cbe1465d49b1ad67b4c92f5a3
     m_Address: Assets/_Game/Prefabs/Game/DefaultGameBoard.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: ca9828b7a3763bd4bae2d355a64788b6
+    m_Address: Assets/_Game/Data/Units/TowerUnit.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: edc9325a0782dd2408fe8ce9068e5ef6
+    m_Address: Assets/_Game/Data/Units/HumanWarriorUnit.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}

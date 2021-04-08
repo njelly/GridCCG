@@ -9,6 +9,7 @@ namespace Tofunaut.GridCCG.Game
     public class GameStateModel : IAppStateModel
     {
         public AssetReference gameBoardAssetReference;
+        public GamePlayer.Model[] gamePlayerModels;
     }
 
     public class GameStateController : AppStateController<GameStateController, GameStateModel>

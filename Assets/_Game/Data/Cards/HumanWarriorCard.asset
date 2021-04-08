@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916d42edcfd107d49b49f29f4262bc71, type: 3}
   m_Name: HumanWarriorCard
   m_EditorClassIdentifier: 
-  SpawnUnit: {fileID: 11400000, guid: edc9325a0782dd2408fe8ce9068e5ef6, type: 2}
+  displayName: Human Warrior
+  cost: 2
+  spawnUnit: {fileID: 11400000, guid: edc9325a0782dd2408fe8ce9068e5ef6, type: 2}
