@@ -16,9 +16,14 @@ namespace Tofunaut.GridCCG
         private SplashScreenStateModel _splashScreenStateModel;
         private StartScreenStateModel _startScreenStateModel;
         private GameStateModel _gameStateModel;
+        private bool _isServer;
 
         private void Awake()
         {
+#if UNITY_SERVER
+            _isServer = true;
+#endif
+            
             DontDestroyOnLoad(gameObject);
         }
 
@@ -33,7 +38,7 @@ namespace Tofunaut.GridCCG
 
         private async Task EnterSplash()
         {
-            if (!Debug.isDebugBuild || !skipSplash)
+            if (!_isServer && (!Debug.isDebugBuild || !skipSplash))
             {
                 var splashState = new AppState<SplashScreenStateController, SplashScreenStateModel>(AppConsts.Scenes.SplashScreen);
                 await splashState.Enter(_splashScreenStateModel);
@@ -46,7 +51,7 @@ namespace Tofunaut.GridCCG
 
         private async Task EnterStart()
         {
-            if (!Debug.isDebugBuild || !skipStart)
+            if (!_isServer && (!Debug.isDebugBuild || !skipSplash))
             {
                 var startScreenState =
                     new AppState<StartScreenStateController, StartScreenStateModel>(AppConsts.Scenes.StartScreen);
