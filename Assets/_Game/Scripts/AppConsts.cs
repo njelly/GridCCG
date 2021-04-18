@@ -2,6 +2,11 @@
 {
     public static class AppConsts
     {
+        public static class PlayFab
+        {
+            public const string TitleId = "DD0E9";
+        }
+        
         public static class Scenes
         {
             public const int Init = 0;
