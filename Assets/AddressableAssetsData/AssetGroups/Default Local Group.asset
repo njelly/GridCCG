@@ -15,16 +15,34 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: dc2cec4fa2f2ca54ea98e84205235c4f
+  m_GUID: d1e5ac703e7ec4dad906a486c8d3fe15
   m_SerializeEntries:
-  - m_GUID: 418b4a3b679c7a5419560803c08cb340
-    m_Address: Assets/_Game/Data/Cards/HumanWarriorCard.asset
+  - m_GUID: 4786f97cbe1465d49b1ad67b4c92f5a3
+    m_Address: Assets/_Game/Prefabs/Game/DefaultGameBoard.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 4786f97cbe1465d49b1ad67b4c92f5a3
-    m_Address: Assets/_Game/Prefabs/Game/DefaultGameBoard.prefab
+  - m_GUID: 4dab1497240a841b98cd085b776d907b
+    m_Address: Assets/_Game/Prefabs/Game/GameCard.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 48a3635fb23e5444f8bca62113990aeb
+    m_Address: Assets/_Game/Prefabs/Game/GamePlayer.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: aef65b4ea3e2e5746ae0ba359e5c8d90
+    m_Address: Assets/_Game/Prefabs/Game/GameTile.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 418b4a3b679c7a5419560803c08cb340
+    m_Address: Assets/_Game/Data/Cards/HumanWarriorCard.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
@@ -42,8 +60,8 @@ MonoBehaviour:
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: 6009a559bee141f46bb2f88c539ffeca, type: 2}
+  m_Settings: {fileID: 11400000, guid: c8aba7e99c70b438ea82c9c98dc96fc4, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 3face477966429448a8df3a091bba0c4, type: 2}
-    - {fileID: 11400000, guid: 7dba67bd66ee73348851d9aa7ce840cb, type: 2}
+    - {fileID: 11400000, guid: e543def79a4e84329a1c30c211efc30f, type: 2}
+    - {fileID: 11400000, guid: 7b5583c72494a4361a73077c74150216, type: 2}

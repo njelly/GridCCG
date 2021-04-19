@@ -36,7 +36,6 @@ namespace Tofunaut.GridCCG.Game
         public override async void SetModel(GameStateModel model)
         {
             base.SetModel(model);
-
             var gameBoardPrefab = await Addressables.LoadAssetAsync<GameObject>(model.gameBoardAssetReference).Task;
             _gameBoard = Instantiate(gameBoardPrefab).GetComponent<GameBoard>();
 
