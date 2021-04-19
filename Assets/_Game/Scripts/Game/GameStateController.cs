@@ -27,8 +27,10 @@ namespace Tofunaut.GridCCG.Game
             _blackboard = new Blackboard();
 
 #if UNITY_SERVER
+            Debug.Log("start server");
             NetworkManager.Singleton.StartServer();
 #else
+            Debug.Log("start client");
             NetworkManager.Singleton.StartClient();
 #endif
         }

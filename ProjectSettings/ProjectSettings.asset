@@ -130,6 +130,8 @@ PlayerSettings:
   bundleVersion: 0.1
   preloadedAssets:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -149,9 +151,9 @@ PlayerSettings:
   applicationIdentifier:
     Standalone: com.Tofunaut.GridCCG
   buildNumber:
-    Standalone: 22
-    iPhone: 22
-    tvOS: 22
+    Standalone: 29
+    iPhone: 29
+    tvOS: 29
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 19

@@ -15,6 +15,11 @@ namespace Tofunaut.GridCCG.Game
             AI,
         }
 
+        private void Start()
+        {
+            Debug.Log("game player instantiated");
+        }
+
         [Serializable]
         public class Model
         {

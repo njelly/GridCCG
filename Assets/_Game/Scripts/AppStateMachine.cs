@@ -9,8 +9,6 @@ namespace Tofunaut.GridCCG
     public class AppStateMachine : MonoBehaviour
     {
         [Header("Development")]
-        public bool skipSplash;
-        public bool skipStart;
         public GameStateModel debugGameStateModel;
 
         private SplashScreenStateModel _splashScreenStateModel;
@@ -32,33 +30,30 @@ namespace Tofunaut.GridCCG
             _splashScreenStateModel = default;
             _startScreenStateModel = default;
             _gameStateModel = Debug.isDebugBuild ? debugGameStateModel : default;
-            
-            await EnterSplash();
+
+            if (_isServer)
+                await EnterGame();
+            else
+                await EnterSplash();
         }
 
         private async Task EnterSplash()
         {
-            if (!_isServer && (!Debug.isDebugBuild || !skipSplash))
-            {
-                var splashState = new AppState<SplashScreenStateController, SplashScreenStateModel>(AppConsts.Scenes.SplashScreen);
-                await splashState.Enter(_splashScreenStateModel);
-                while(!splashState.IsComplete)
-                    await Task.Yield();
-            }
+            var splashState = new AppState<SplashScreenStateController, SplashScreenStateModel>(AppConsts.Scenes.SplashScreen);
+            await splashState.Enter(_splashScreenStateModel);
+            while(!splashState.IsComplete)
+                await Task.Yield();
 
             await EnterStart();
         }
 
         private async Task EnterStart()
         {
-            if (!_isServer && (!Debug.isDebugBuild || !skipSplash))
-            {
-                var startScreenState =
-                    new AppState<StartScreenStateController, StartScreenStateModel>(AppConsts.Scenes.StartScreen);
-                await startScreenState.Enter(_startScreenStateModel);
-                while (!startScreenState.IsComplete)
-                    await Task.Yield();
-            }
+            var startScreenState =
+                new AppState<StartScreenStateController, StartScreenStateModel>(AppConsts.Scenes.StartScreen);
+            await startScreenState.Enter(_startScreenStateModel);
+            while (!startScreenState.IsComplete)
+                await Task.Yield();
 
             await EnterGame();
         }
