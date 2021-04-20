@@ -6,76 +6,30 @@ using UnityEngine.AddressableAssets;
 
 namespace Tofunaut.GridCCG.Game
 {
+    [RequireComponent(typeof(NetworkObject))]
     public class GamePlayer : NetworkBehaviour
     {
-        public enum Controller
+        private NetworkObject _networkObject;
+
+        private void Awake()
         {
-            Local,
-            Network,
-            AI,
+            _networkObject = GetComponent<NetworkObject>();
         }
 
         private void Start()
         {
-            Debug.Log("game player instantiated");
+            GameStateController.AddPlayer(this);
+            GameStateController.Blackboard.Subscribe<NextStateEvent>(GameStateController_OnNextState);
         }
 
-        [Serializable]
-        public class Model
+        private void OnDestroy()
         {
-            public string displayName;
-            public Controller controller;
-            public CardCountPair[] cardCountPairs;
-
-            [Serializable]
-            public class CardCountPair
-            {
-                public AssetReference cardInfoReference;
-                public int count;
-            }
-
-            public NetworkModel ToNetworkModel()
-            {
-                return new NetworkModel
-                {
-                    displayName = displayName,
-                    controller = controller,
-                    cardCountPairs = cardCountPairs.Select(x => new NetworkModel.CardCountPair
-                    {
-                        count = x.count,
-                        assetGuid = x.cardInfoReference.AssetGUID,
-                    }).ToArray(),
-                };
-            }
+            GameStateController.Blackboard?.Unsubscribe<NextStateEvent>(GameStateController_OnNextState);
         }
 
-        [Serializable]
-        public class NetworkModel
+        private void GameStateController_OnNextState(NextStateEvent e)
         {
-            public string displayName;
-            public Controller controller;
-            public CardCountPair[] cardCountPairs;
-            
-            [Serializable]
-            public class CardCountPair
-            {
-                public string assetGuid;
-                public int count;
-            }            
-            
-            public Model ToLocalModel()
-            {
-                return new Model
-                {
-                    displayName = displayName,
-                    controller = controller,
-                    cardCountPairs = cardCountPairs.Select(x => new Model.CardCountPair
-                    {
-                        count = x.count,
-                        cardInfoReference = new AssetReference(x.assetGuid),
-                    }).ToArray(),
-                };
-            }
+            Debug.Log($"from state {e.prevState} to {e.currentState}");
         }
     }
 }

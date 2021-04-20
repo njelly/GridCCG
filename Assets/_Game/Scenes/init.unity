@@ -260,6 +260,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6146728345607787631, guid: 2d98b366220c94ab5b139e1b1036e04e,
+        type: 3}
+      propertyPath: buildInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e855fbc6f6e8491e8926a5548bcecfe,
+        type: 2}
     - target: {fileID: 6146728345835342347, guid: 2d98b366220c94ab5b139e1b1036e04e,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -385,8 +391,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38e4835e5d3423f9df788c51e4b1f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipSplash: 0
-  skipStart: 0
   debugGameStateModel:
     gameBoardAssetReference:
       m_AssetGUID: 4786f97cbe1465d49b1ad67b4c92f5a3
