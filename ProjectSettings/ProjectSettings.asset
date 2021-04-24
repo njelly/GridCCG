@@ -150,9 +150,9 @@ PlayerSettings:
   applicationIdentifier:
     Standalone: com.Tofunaut.GridCCG
   buildNumber:
-    Standalone: 29
-    iPhone: 29
-    tvOS: 29
+    Standalone: 2
+    iPhone: 2
+    tvOS: 2
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 19

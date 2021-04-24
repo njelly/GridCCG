@@ -26,7 +26,7 @@ namespace Tofunaut.GridCCG.Game
             PostGame,
         }
 
-        public static Blackboard Blackboard => HasInstance ? null : _instance._blackboard;
+        public static Blackboard Blackboard => HasInstance ? _instance._blackboard : null;
         public static GameState CurrentState => HasInstance ? _instance._gameState : GameState.Invalid;
         
         private Blackboard _blackboard;
