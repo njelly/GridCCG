@@ -42,11 +42,12 @@ namespace Tofunaut.GridCCG.Game
             _gamePlayers = new List<GamePlayer>();
             _gameState = GameState.Invalid;
 
+
 #if UNITY_SERVER
-            Debug.Log("start server");
+            gameObject.AddComponent<GameServerManager>();
             NetworkManager.Singleton.StartServer();
 #else
-            Debug.Log("start client");
+            gameObject.AddComponent<GameClientManager>();
             NetworkManager.Singleton.StartClient();
 #endif
             
@@ -101,6 +102,8 @@ namespace Tofunaut.GridCCG.Game
 
             if (_instance._gamePlayers.Count >= _instance.Model.expectedPlayers)
                 _instance.NextState();
+
+            Blackboard.Invoke(new PlayerAddedEvent(player));
         }
     }
 
@@ -113,6 +116,16 @@ namespace Tofunaut.GridCCG.Game
         {
             this.prevState = prevState;
             this.currentState = currentState;
+        }
+    }
+
+    public class PlayerAddedEvent : IBlackboardEvent
+    {
+        public readonly GamePlayer player;
+
+        public PlayerAddedEvent(GamePlayer player)
+        {
+            this.player = player;
         }
     }
 }
