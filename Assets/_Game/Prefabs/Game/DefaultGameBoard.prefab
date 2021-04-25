@@ -47,6 +47,9 @@ MonoBehaviour:
   boardSize: {x: 7, y: 7}
   gameTilePrefab: {fileID: 8825467839318285330}
   tileSpacing: 5
+  towerPlacements:
+  - {x: 0, y: 0}
+  - {x: 6, y: 6}
 --- !u!1001 &5407184677352731350
 PrefabInstance:
   m_ObjectHideFlags: 0

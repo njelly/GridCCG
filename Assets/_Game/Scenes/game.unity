@@ -480,6 +480,9 @@ MonoBehaviour:
     - game
     AllowRuntimeSceneChanges: 0
     NetworkPrefabs:
+    - Prefab: {fileID: 3702540842284738255, guid: 78830ccf7e5f6f8499c60936f5f3cdcf,
+        type: 3}
+      PlayerPrefab: 0
     - Prefab: {fileID: 6632508193147350721, guid: 48a3635fb23e5444f8bca62113990aeb,
         type: 3}
       PlayerPrefab: 1
@@ -542,6 +545,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06144f3fbf77eb48ad55e75de280a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameRpcManagerPrefab: {fileID: 7742173535382358051, guid: 78830ccf7e5f6f8499c60936f5f3cdcf,
+    type: 3}
 --- !u!4 &1531398592
 Transform:
   m_ObjectHideFlags: 0

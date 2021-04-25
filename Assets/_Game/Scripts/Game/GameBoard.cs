@@ -7,6 +7,7 @@ namespace Tofunaut.GridCCG.Game
         public Vector2Int boardSize;
         public GameTile gameTilePrefab;
         public float tileSpacing;
+        public Vector2Int[] towerPlacements;
 
         private GameTile[,] _tiles;
 
@@ -24,6 +25,14 @@ namespace Tofunaut.GridCCG.Game
             }
             
             Destroy(gameTilePrefab.gameObject);
+        }
+
+        public Vector2Int GetTowerPlacementForPlayerIndex(int playerIndex)
+        {
+            if (playerIndex < 0 || playerIndex >= towerPlacements.Length)
+                return Vector2Int.zero;
+
+            return towerPlacements[playerIndex];
         }
     }
 }

@@ -1,3 +1,4 @@
+using Tofunaut.GridCCG.Game;
 using UnityEngine;
 
 namespace Tofunaut.GridCCG.Data
@@ -6,6 +7,7 @@ namespace Tofunaut.GridCCG.Data
     public class UnitInfo : ScriptableObject
     {
         public string displayName;
+        public GameUnit unitPrefab;
         public int conquer;
         public int power;
         public int movement;

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: TowerUnit
   m_EditorClassIdentifier: 
   displayName: Tower
+  unitPrefab: {fileID: 2210301438462792640, guid: 707d8f6ff76d5d642acb7fd6403c2c68,
+    type: 3}
   conquer: 3
   power: 0
   movement: 0
