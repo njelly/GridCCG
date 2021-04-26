@@ -55,7 +55,7 @@ namespace Tofunaut.GridCCG.Game
             var pos = new Vector3(coord.x * GameStateController.GameBoard.tileSpacing, 0f, coord.y * GameStateController.GameBoard.tileSpacing);
             var gameUnit = Instantiate(unitInfo.unitPrefab, pos, Quaternion.identity, null);
             _units.Add(gameUnit);
-            gameUnit.Initialize(this);
+            gameUnit.Initialize(this, unitInfo);
 
         }
 
