@@ -1,3 +1,4 @@
+using Tofunaut.GridCCG.Data;
 using UnityEngine;
 
 namespace Tofunaut.GridCCG.Game
@@ -11,15 +12,17 @@ namespace Tofunaut.GridCCG.Game
         public GamePlayer Owner { get; private set; }
 
         private Transform _t;
+        private UnitInfo _unitInfo;
 
         private void Awake()
         {
             _t = GetComponent<Transform>();
         }
 
-        public void Initialize(GamePlayer owner)
+        public void Initialize(GamePlayer owner, UnitInfo unitInfo)
         {
             Owner = owner;
+            _unitInfo = unitInfo;
         }
     }
 }

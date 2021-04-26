@@ -13,6 +13,12 @@ namespace Tofunaut.GridCCG.Game
         public TextMeshProUGUI displayNameLabel;
         public TextMeshProUGUI costLabel;
 
+        public Transform statsContainer;
+        public TextMeshProUGUI conquerLabel;
+        public TextMeshProUGUI powerLabel;
+        public TextMeshProUGUI movementLabel;
+        public TextMeshProUGUI hitPointsLabel;
+
         private void Initialize(GamePlayer owner, CardInfo cardInfo)
         {
             CardInfo = cardInfo;
@@ -20,6 +26,18 @@ namespace Tofunaut.GridCCG.Game
 
             displayNameLabel.text = cardInfo.displayName;
             costLabel.text = cardInfo.cost.ToString();
+
+            if(cardInfo.spawnUnit)
+            {
+                conquerLabel.text = cardInfo.spawnUnit.conquer.ToString();
+                powerLabel.text = cardInfo.spawnUnit.power.ToString();
+                movementLabel.text = cardInfo.spawnUnit.movement.ToString();
+                hitPointsLabel.text = cardInfo.spawnUnit.hitPoints.ToString();
+            }
+            else
+            {
+                statsContainer.gameObject.SetActive(false);
+            }
         }
     }
 }
